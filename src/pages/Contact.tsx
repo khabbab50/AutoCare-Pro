@@ -77,7 +77,7 @@ export const Contact: React.FC = () => {
       <div className="bg-gray-900 py-32 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img 
-            src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&q=80&w=2000" 
+            src="https://picsum.photos/seed/autocare-contact/1920/1080" 
             alt="Contact us" 
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"

@@ -64,7 +64,7 @@ export const ServiceDetail: React.FC = () => {
       <div className="bg-gray-900 py-24 relative overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <img 
-            src={service.image || "https://images.unsplash.com/photo-1487754164641-a09f7c27b851?auto=format&fit=crop&q=80&w=2000"} 
+            src={service.image || "https://picsum.photos/seed/autocare-service-detail/1920/1080"} 
             alt={service.title} 
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"

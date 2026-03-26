@@ -62,7 +62,7 @@ export const Home: React.FC = () => {
       <section className="relative h-[85vh] flex items-center overflow-hidden bg-gray-900">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=2000" 
+            src="https://picsum.photos/seed/autocare-hero/1920/1080" 
             alt="Auto Repair Shop" 
             className="w-full h-full object-cover opacity-40"
             referrerPolicy="no-referrer"
@@ -149,7 +149,7 @@ export const Home: React.FC = () => {
               >
                 <div className="h-56 relative overflow-hidden">
                   <img 
-                    src={service.image || `https://images.unsplash.com/photo-1487754164641-a09f7c27b851?auto=format&fit=crop&q=80&w=800`} 
+                    src={service.image || `https://picsum.photos/seed/autocare-service-card/800/600`} 
                     alt={service.title} 
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                     referrerPolicy="no-referrer"
@@ -266,7 +266,7 @@ export const Home: React.FC = () => {
               <Link to={`/blog/${post.slug}`}>
                 <div className="h-64 rounded-3xl overflow-hidden mb-6 shadow-sm group-hover:shadow-xl transition-all">
                   <img 
-                    src={post.image || `https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800`} 
+                    src={post.image || `https://picsum.photos/seed/autocare-blog-card/800/600`} 
                     alt={post.title} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     referrerPolicy="no-referrer"

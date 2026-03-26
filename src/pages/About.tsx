@@ -61,7 +61,7 @@ export const About: React.FC = () => {
       <div className="bg-gray-900 py-32 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img 
-            src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=2000" 
+            src="https://picsum.photos/seed/autocare-hero/1920/1080" 
             alt="Auto shop" 
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
@@ -116,7 +116,7 @@ export const About: React.FC = () => {
           >
             <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1530046339160-ce3e5b0c7a2f?auto=format&fit=crop&q=80&w=1000" 
+                src="https://picsum.photos/seed/autocare-story/1000/800" 
                 alt="Our team" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
@@ -239,10 +239,10 @@ export const About: React.FC = () => {
             className="grid grid-cols-2 gap-6"
           >
             {[
-              'https://images.unsplash.com/photo-1590611380053-da6447021fbb?auto=format&fit=crop&q=80&w=600',
-              'https://images.unsplash.com/photo-1504222490345-c075b6008014?auto=format&fit=crop&q=80&w=600',
-              'https://images.unsplash.com/photo-1486006396193-471cf6a5ff1a?auto=format&fit=crop&q=80&w=600',
-              'https://images.unsplash.com/photo-1597766353939-95885293233b?auto=format&fit=crop&q=80&w=600'
+              'https://picsum.photos/seed/mechanic1/600/800',
+              'https://picsum.photos/seed/mechanic2/600/800',
+              'https://picsum.photos/seed/mechanic3/600/800',
+              'https://picsum.photos/seed/mechanic4/600/800'
             ].map((img, i) => (
               <div key={i} className={`rounded-[2.5rem] overflow-hidden shadow-lg ${i % 2 === 1 ? 'mt-12' : ''}`}>
                 <img 

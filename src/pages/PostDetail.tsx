@@ -71,7 +71,7 @@ export const PostDetail: React.FC = () => {
       <div className="bg-gray-900 py-32 relative overflow-hidden">
         <div className="absolute inset-0 opacity-40">
           <img 
-            src={post.image || "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2000"} 
+            src={post.image || "https://picsum.photos/seed/autocare-blog-detail/1920/1080"} 
             alt={post.title} 
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
@@ -145,7 +145,7 @@ export const PostDetail: React.FC = () => {
                     <div className="flex items-center space-x-4">
                       <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 shadow-sm">
                         <img 
-                          src={recent.image || "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=200"} 
+                          src={recent.image || "https://picsum.photos/seed/autocare-blog-card/200/200"} 
                           alt={recent.title} 
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           referrerPolicy="no-referrer"

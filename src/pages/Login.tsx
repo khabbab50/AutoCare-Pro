@@ -10,12 +10,13 @@ import {
   LogIn
 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { Helmet } from 'react-helmet-async';
 
 export const Login: React.FC = () => {
+  const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -23,14 +24,20 @@ export const Login: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      let user;
+      if (isSignUp) {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        user = userCredential.user;
+      } else {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        user = userCredential.user;
+      }
       
       // Check if user is admin
       const userDoc = await getDoc(doc(db, 'users', user.uid));
@@ -47,7 +54,7 @@ export const Login: React.FC = () => {
         setError('You do not have administrative access.');
       }
     } catch (err: any) {
-      setError(err.message || 'Failed to login. Please check your credentials.');
+      setError(err.message || 'Authentication failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }
@@ -93,10 +100,10 @@ export const Login: React.FC = () => {
           </div>
         </div>
         <h2 className="mt-6 text-center text-4xl font-extrabold text-gray-900 tracking-tight">
-          Admin <span className="text-blue-600">Access</span>
+          Admin <span className="text-blue-600">{isSignUp ? 'Registration' : 'Access'}</span>
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Sign in to manage your services, bookings, and content.
+          {isSignUp ? 'Create your admin account to get started.' : 'Sign in to manage your services, bookings, and content.'}
         </p>
       </div>
 
@@ -113,7 +120,7 @@ export const Login: React.FC = () => {
             </div>
           )}
 
-          <form className="space-y-6" onSubmit={handleLogin}>
+          <form className="space-y-6" onSubmit={handleAuth}>
             <div className="space-y-2">
               <label className="text-sm font-bold text-gray-700 flex items-center">
                 <Mail className="h-4 w-4 mr-2 text-blue-600" /> Email Address
@@ -150,10 +157,19 @@ export const Login: React.FC = () => {
               {loading ? (
                 <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-white"></div>
               ) : (
-                <>Sign In <LogIn className="ml-2 h-5 w-5" /></>
+                <>{isSignUp ? 'Sign Up' : 'Sign In'} <LogIn className="ml-2 h-5 w-5" /></>
               )}
             </button>
           </form>
+
+          <div className="mt-6 text-center">
+            <button
+              onClick={() => setIsSignUp(!isSignUp)}
+              className="text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors"
+            >
+              {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
+            </button>
+          </div>
 
           <div className="mt-8">
             <div className="relative">

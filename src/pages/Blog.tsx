@@ -52,7 +52,7 @@ export const Blog: React.FC = () => {
       <div className="bg-gray-900 py-24 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img 
-            src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2000" 
+            src="https://picsum.photos/seed/autocare-blog-header/1920/1080" 
             alt="Car on road" 
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
@@ -115,7 +115,7 @@ export const Blog: React.FC = () => {
               >
                 <Link to={`/blog/${post.slug}`} className="block h-64 relative overflow-hidden">
                   <img 
-                    src={post.image || `https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800`} 
+                    src={post.image || `https://picsum.photos/seed/autocare-blog-card/800/600`} 
                     alt={post.title} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     referrerPolicy="no-referrer"

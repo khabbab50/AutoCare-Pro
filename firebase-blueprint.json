@@ -1,0 +1,80 @@
+{
+  "entities": {
+    "Service": {
+      "title": "Service",
+      "description": "An automotive repair or maintenance service offered by the business.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "The name of the service." },
+        "description": { "type": "string", "description": "A detailed description of the service." },
+        "icon": { "type": "string", "description": "The name of the icon from lucide-react." },
+        "price": { "type": "string", "description": "The starting price or price range for the service." },
+        "image": { "type": "string", "description": "A URL for a representative image of the service." },
+        "slug": { "type": "string", "description": "A URL-friendly identifier for the service." }
+      },
+      "required": ["title", "description", "icon", "slug"]
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "A customer review or testimonial.",
+      "type": "object",
+      "properties": {
+        "author": { "type": "string", "description": "The name of the customer." },
+        "content": { "type": "string", "description": "The testimonial text." },
+        "rating": { "type": "number", "description": "A rating from 1 to 5." },
+        "date": { "type": "string", "format": "date", "description": "The date the testimonial was given." }
+      },
+      "required": ["author", "content", "rating", "date"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "An online booking request from a customer.",
+      "type": "object",
+      "properties": {
+        "customerName": { "type": "string", "description": "The customer's full name." },
+        "email": { "type": "string", "format": "email", "description": "The customer's email address." },
+        "phone": { "type": "string", "description": "The customer's phone number." },
+        "serviceId": { "type": "string", "description": "The ID of the requested service." },
+        "date": { "type": "string", "format": "date", "description": "The requested date for the service." },
+        "message": { "type": "string", "description": "An optional message or additional details." },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "completed", "cancelled"], "description": "The current status of the booking request." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "The timestamp when the booking was created." }
+      },
+      "required": ["customerName", "email", "phone", "serviceId", "date", "status", "createdAt"]
+    },
+    "Post": {
+      "title": "Post",
+      "description": "A blog post or news update.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "The title of the post." },
+        "content": { "type": "string", "description": "The content of the post in Markdown format." },
+        "date": { "type": "string", "format": "date", "description": "The publication date." },
+        "image": { "type": "string", "description": "A URL for the featured image." },
+        "slug": { "type": "string", "description": "A URL-friendly identifier for the post." },
+        "author": { "type": "string", "description": "The name of the author." }
+      },
+      "required": ["title", "content", "date", "slug", "author"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "General site settings and contact information.",
+      "type": "object",
+      "properties": {
+        "siteName": { "type": "string", "description": "The name of the business." },
+        "contactEmail": { "type": "string", "format": "email", "description": "The primary contact email." },
+        "phone": { "type": "string", "description": "The business phone number." },
+        "address": { "type": "string", "description": "The physical address of the shop." },
+        "socialLinks": { "type": "object", "description": "Links to social media profiles." }
+      },
+      "required": ["siteName", "contactEmail", "phone", "address"]
+    }
+  },
+  "firestore": {
+    "/services/{serviceId}": { "schema": "Service", "description": "Collection of automotive services." },
+    "/testimonials/{testimonialId}": { "schema": "Testimonial", "description": "Collection of customer testimonials." },
+    "/bookings/{bookingId}": { "schema": "Booking", "description": "Collection of online booking requests." },
+    "/posts/{postId}": { "schema": "Post", "description": "Collection of blog posts." },
+    "/settings/main": { "schema": "Settings", "description": "Global site settings." }
+  }
+}

@@ -13,13 +13,18 @@ export const AdminLayout: React.FC = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const userDoc = await getDoc(doc(db, 'users', user.uid));
-        if (userDoc.exists() && userDoc.data().role === 'admin') {
-          setIsAdmin(true);
-        } else if (user.email === 'khabbab.dev@gmail.com') {
-          // Fallback for the initial admin
-          setIsAdmin(true);
-        } else {
+        try {
+          const userDoc = await getDoc(doc(db, 'users', user.uid));
+          if (userDoc.exists() && userDoc.data().role === 'admin') {
+            setIsAdmin(true);
+          } else if (user.email === 'khabbab.dev@gmail.com') {
+            // Fallback for the initial admin
+            setIsAdmin(true);
+          } else {
+            setIsAdmin(false);
+          }
+        } catch (error) {
+          console.error('Error checking admin status:', error);
           setIsAdmin(false);
         }
       } else {

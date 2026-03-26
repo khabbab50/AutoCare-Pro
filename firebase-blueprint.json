@@ -68,6 +68,17 @@
         "socialLinks": { "type": "object", "description": "Links to social media profiles." }
       },
       "required": ["siteName", "contactEmail", "phone", "address"]
+    },
+    "User": {
+      "title": "User",
+      "description": "A user of the application with a specific role.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email", "description": "The user's email address." },
+        "role": { "type": "string", "enum": ["admin", "user"], "description": "The user's role." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the user was created." }
+      },
+      "required": ["email", "role"]
     }
   },
   "firestore": {
@@ -75,6 +86,7 @@
     "/testimonials/{testimonialId}": { "schema": "Testimonial", "description": "Collection of customer testimonials." },
     "/bookings/{bookingId}": { "schema": "Booking", "description": "Collection of online booking requests." },
     "/posts/{postId}": { "schema": "Post", "description": "Collection of blog posts." },
-    "/settings/main": { "schema": "Settings", "description": "Global site settings." }
+    "/settings/main": { "schema": "Settings", "description": "Global site settings." },
+    "/users/{userId}": { "schema": "User", "description": "Collection of application users and their roles." }
   }
 }

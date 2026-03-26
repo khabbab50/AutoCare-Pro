@@ -41,16 +41,27 @@ export const Login: React.FC = () => {
       
       // Check if user is admin
       const userDocRef = doc(db, 'users', user.uid);
-      const userDoc = await getDoc(userDocRef);
+      let userDoc;
+      try {
+        userDoc = await getDoc(userDocRef);
+      } catch (err) {
+        handleFirestoreError(err, OperationType.GET, `users/${user.uid}`);
+        return;
+      }
       
       if (!userDoc.exists()) {
         // Create user document if it doesn't exist
         const role = user.email === 'khabbab.dev@gmail.com' ? 'admin' : 'user';
-        await setDoc(userDocRef, {
-          email: user.email,
-          role: role,
-          createdAt: new Date()
-        });
+        try {
+          await setDoc(userDocRef, {
+            email: user.email,
+            role: role,
+            createdAt: new Date()
+          });
+        } catch (err) {
+          handleFirestoreError(err, OperationType.CREATE, `users/${user.uid}`);
+          return;
+        }
         
         if (role === 'admin') {
           navigate('/admin');
@@ -82,15 +93,26 @@ export const Login: React.FC = () => {
       const user = result.user;
       
       const userDocRef = doc(db, 'users', user.uid);
-      const userDoc = await getDoc(userDocRef);
+      let userDoc;
+      try {
+        userDoc = await getDoc(userDocRef);
+      } catch (err) {
+        handleFirestoreError(err, OperationType.GET, `users/${user.uid}`);
+        return;
+      }
       
       if (!userDoc.exists()) {
         const role = user.email === 'khabbab.dev@gmail.com' ? 'admin' : 'user';
-        await setDoc(userDocRef, {
-          email: user.email,
-          role: role,
-          createdAt: new Date()
-        });
+        try {
+          await setDoc(userDocRef, {
+            email: user.email,
+            role: role,
+            createdAt: new Date()
+          });
+        } catch (err) {
+          handleFirestoreError(err, OperationType.CREATE, `users/${user.uid}`);
+          return;
+        }
         
         if (role === 'admin') {
           navigate('/admin');

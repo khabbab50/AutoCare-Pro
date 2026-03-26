@@ -8,7 +8,8 @@ import {
   FileText, 
   Settings, 
   LogOut,
-  Home
+  Home,
+  Users
 } from 'lucide-react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
@@ -27,6 +28,7 @@ export const AdminSidebar: React.FC = () => {
     { name: 'Bookings', path: '/admin/bookings', icon: CalendarCheck },
     { name: 'Testimonials', path: '/admin/testimonials', icon: MessageSquare },
     { name: 'Blog Posts', path: '/admin/posts', icon: FileText },
+    { name: 'Users', path: '/admin/users', icon: Users },
     { name: 'Settings', path: '/admin/settings', icon: Settings },
   ];
 

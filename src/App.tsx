@@ -23,6 +23,7 @@ import { AdminBookings } from './pages/admin/AdminBookings';
 import { AdminTestimonials } from './pages/admin/AdminTestimonials';
 import { AdminPosts } from './pages/admin/AdminPosts';
 import { AdminSettings } from './pages/admin/AdminSettings';
+import { AdminUsers } from './pages/admin/AdminUsers';
 
 export default function App() {
   return (
@@ -48,6 +49,7 @@ export default function App() {
               <Route path="bookings" element={<AdminBookings />} />
               <Route path="testimonials" element={<AdminTestimonials />} />
               <Route path="posts" element={<AdminPosts />} />
+              <Route path="users" element={<AdminUsers />} />
               <Route path="settings" element={<AdminSettings />} />
             </Route>
           </Routes>

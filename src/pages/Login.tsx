@@ -40,18 +40,31 @@ export const Login: React.FC = () => {
       }
       
       // Check if user is admin
-      const userDoc = await getDoc(doc(db, 'users', user.uid));
-      if (userDoc.exists() && userDoc.data().role === 'admin') {
-        navigate('/admin');
-      } else if (user.email === 'khabbab.dev@gmail.com') {
-        // Initial admin setup
-        await setDoc(doc(db, 'users', user.uid), {
+      const userDocRef = doc(db, 'users', user.uid);
+      const userDoc = await getDoc(userDocRef);
+      
+      if (!userDoc.exists()) {
+        // Create user document if it doesn't exist
+        const role = user.email === 'khabbab.dev@gmail.com' ? 'admin' : 'user';
+        await setDoc(userDocRef, {
           email: user.email,
-          role: 'admin'
-        }, { merge: true });
+          role: role,
+          createdAt: new Date()
+        });
+        
+        if (role === 'admin') {
+          navigate('/admin');
+        } else {
+          setError('Account created. Please wait for administrative approval to access the panel.');
+        }
+        return;
+      }
+
+      const userData = userDoc.data();
+      if (userData.role === 'admin') {
         navigate('/admin');
       } else {
-        setError('You do not have administrative access.');
+        setError('You do not have administrative access. Please contact the site owner.');
       }
     } catch (err: any) {
       setError(err.message || 'Authentication failed. Please check your credentials.');
@@ -68,14 +81,27 @@ export const Login: React.FC = () => {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       
-      const userDoc = await getDoc(doc(db, 'users', user.uid));
-      if (userDoc.exists() && userDoc.data().role === 'admin') {
-        navigate('/admin');
-      } else if (user.email === 'khabbab.dev@gmail.com') {
-        await setDoc(doc(db, 'users', user.uid), {
+      const userDocRef = doc(db, 'users', user.uid);
+      const userDoc = await getDoc(userDocRef);
+      
+      if (!userDoc.exists()) {
+        const role = user.email === 'khabbab.dev@gmail.com' ? 'admin' : 'user';
+        await setDoc(userDocRef, {
           email: user.email,
-          role: 'admin'
-        }, { merge: true });
+          role: role,
+          createdAt: new Date()
+        });
+        
+        if (role === 'admin') {
+          navigate('/admin');
+        } else {
+          setError('Google account linked. Please wait for administrative approval.');
+        }
+        return;
+      }
+
+      const userData = userDoc.data();
+      if (userData.role === 'admin') {
         navigate('/admin');
       } else {
         setError('You do not have administrative access.');

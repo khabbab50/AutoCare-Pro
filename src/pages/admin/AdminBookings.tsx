@@ -90,18 +90,21 @@ export const AdminBookings: React.FC = () => {
       <Helmet>
         <title>Manage Bookings | AutoCare Pro</title>
       </Helmet>
-      <div className="flex justify-between items-end">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
-          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Booking Requests</h1>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Booking Requests</h1>
           <p className="text-gray-500 mt-2">Manage and respond to customer service appointments.</p>
         </div>
-        <div className="flex items-center space-x-4">
-          <div className="bg-white px-6 py-3 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-3">
-            <Filter className="h-5 w-5 text-blue-600" />
+        <div className="flex items-center w-full md:w-auto">
+          <div className="bg-white px-6 py-3 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-3 w-full justify-between md:justify-start">
+            <div className="flex items-center space-x-3">
+              <Filter className="h-5 w-5 text-blue-600" />
+              <span className="text-sm font-bold text-gray-400 uppercase tracking-widest md:hidden">Filter:</span>
+            </div>
             <select 
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="bg-transparent border-none focus:ring-0 font-bold text-gray-900 text-sm"
+              className="bg-transparent border-none focus:ring-0 font-bold text-gray-900 text-sm text-right md:text-left"
             >
               <option value="all">All Status</option>
               <option value="pending">Pending</option>
@@ -203,16 +206,16 @@ export const AdminBookings: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative bg-white w-full max-w-2xl rounded-[3rem] shadow-2xl overflow-hidden"
+              className="relative bg-white w-full max-w-2xl rounded-3xl md:rounded-[3rem] shadow-2xl overflow-hidden"
             >
-              <div className="p-8 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+              <div className="p-6 md:p-8 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white">
-                    <CalendarCheck className="h-6 w-6" />
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white">
+                    <CalendarCheck className="h-5 w-5 md:h-6 md:w-6" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-gray-900">Booking Details</h2>
-                    <p className="text-sm text-gray-500">ID: {selectedBooking.id}</p>
+                    <h2 className="text-lg md:text-xl font-bold text-gray-900">Booking Details</h2>
+                    <p className="text-xs text-gray-500">ID: {selectedBooking.id}</p>
                   </div>
                 </div>
                 <button onClick={() => setSelectedBooking(null)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
@@ -220,8 +223,8 @@ export const AdminBookings: React.FC = () => {
                 </button>
               </div>
 
-              <div className="p-10 space-y-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="p-6 md:p-10 space-y-8 md:space-y-10 max-h-[80vh] overflow-y-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                   <div className="space-y-6">
                     <div className="flex items-start space-x-4">
                       <User className="h-5 w-5 text-blue-600 mt-1" />
@@ -279,40 +282,40 @@ export const AdminBookings: React.FC = () => {
                 </div>
 
                 {selectedBooking.message && (
-                  <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100">
+                  <div className="bg-gray-50 p-6 md:p-8 rounded-3xl border border-gray-100">
                     <div className="flex items-center space-x-2 text-gray-400 mb-4">
                       <MessageSquare className="h-4 w-4" />
                       <span className="text-xs font-bold uppercase tracking-widest">Customer Message</span>
                     </div>
-                    <p className="text-gray-700 leading-relaxed italic">"{selectedBooking.message}"</p>
+                    <p className="text-gray-700 leading-relaxed italic text-sm md:text-base">"{selectedBooking.message}"</p>
                   </div>
                 )}
 
-                <div className="pt-8 border-t border-gray-100 flex flex-wrap gap-4">
+                <div className="pt-8 border-t border-gray-100 flex flex-col sm:flex-row flex-wrap gap-4">
                   <button 
                     onClick={() => handleUpdateStatus(selectedBooking.id, 'confirmed')}
                     disabled={selectedBooking.status === 'confirmed'}
-                    className="flex-grow bg-blue-600 text-white py-4 rounded-full font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 disabled:opacity-50"
+                    className="flex-grow bg-blue-600 text-white py-4 rounded-full font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 disabled:opacity-50 text-sm md:text-base"
                   >
                     Confirm Booking
                   </button>
                   <button 
                     onClick={() => handleUpdateStatus(selectedBooking.id, 'completed')}
                     disabled={selectedBooking.status === 'completed'}
-                    className="flex-grow bg-green-600 text-white py-4 rounded-full font-bold hover:bg-green-700 transition-all shadow-xl shadow-green-600/20 disabled:opacity-50"
+                    className="flex-grow bg-green-600 text-white py-4 rounded-full font-bold hover:bg-green-700 transition-all shadow-xl shadow-green-600/20 disabled:opacity-50 text-sm md:text-base"
                   >
                     Mark Completed
                   </button>
                   <button 
                     onClick={() => handleUpdateStatus(selectedBooking.id, 'cancelled')}
                     disabled={selectedBooking.status === 'cancelled'}
-                    className="flex-grow bg-gray-100 text-gray-700 py-4 rounded-full font-bold hover:bg-gray-200 transition-all disabled:opacity-50"
+                    className="flex-grow bg-gray-100 text-gray-700 py-4 rounded-full font-bold hover:bg-gray-200 transition-all disabled:opacity-50 text-sm md:text-base"
                   >
                     Cancel
                   </button>
                   <button 
                     onClick={() => handleDelete(selectedBooking.id)}
-                    className="w-full bg-red-50 text-red-600 py-4 rounded-full font-bold hover:bg-red-100 transition-all"
+                    className="w-full bg-red-50 text-red-600 py-4 rounded-full font-bold hover:bg-red-100 transition-all text-sm md:text-base"
                   >
                     Delete Request
                   </button>

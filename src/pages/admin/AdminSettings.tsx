@@ -81,31 +81,31 @@ export const AdminSettings: React.FC = () => {
       <Helmet>
         <title>Site Settings | AutoCare Pro</title>
       </Helmet>
-      <div className="flex justify-between items-end">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
-          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Site Settings</h1>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Site Settings</h1>
           <p className="text-gray-500 mt-2">Configure your business information and social links.</p>
         </div>
         {success && (
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-green-50 text-green-600 px-6 py-3 rounded-2xl border border-green-100 flex items-center font-bold"
+            className="w-full md:w-auto bg-green-50 text-green-600 px-6 py-3 rounded-2xl border border-green-100 flex items-center font-bold justify-center md:justify-start"
           >
             <CheckCircle2 className="mr-2 h-5 w-5" /> Settings Saved
           </motion.div>
         )}
       </div>
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
         {/* General Info */}
         <div className="lg:col-span-2 space-y-8">
-          <div className="bg-white p-10 rounded-[3rem] shadow-sm border border-gray-100 space-y-8">
-            <h2 className="text-2xl font-bold text-gray-900 flex items-center">
+          <div className="bg-white p-6 md:p-10 rounded-3xl md:rounded-[3rem] shadow-sm border border-gray-100 space-y-8">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 flex items-center">
               <Globe className="h-6 w-6 mr-3 text-blue-600" /> Business Information
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               <div className="space-y-2">
                 <label className="text-sm font-bold text-gray-700">Site Name</label>
                 <input
@@ -158,12 +158,12 @@ export const AdminSettings: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white p-10 rounded-[3rem] shadow-sm border border-gray-100 space-y-8">
-            <h2 className="text-2xl font-bold text-gray-900 flex items-center">
+          <div className="bg-white p-6 md:p-10 rounded-3xl md:rounded-[3rem] shadow-sm border border-gray-100 space-y-8">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 flex items-center">
               <Settings className="h-6 w-6 mr-3 text-blue-600" /> Social Media Links
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               <div className="space-y-2">
                 <label className="text-sm font-bold text-gray-700 flex items-center">
                   <Facebook className="h-4 w-4 mr-2 text-blue-600" /> Facebook URL
@@ -206,7 +206,7 @@ export const AdminSettings: React.FC = () => {
 
         {/* Save Sidebar */}
         <div className="space-y-8">
-          <div className="bg-gray-900 p-10 rounded-[3rem] text-white shadow-2xl shadow-gray-900/20 sticky top-28">
+          <div className="bg-gray-900 p-8 md:p-10 rounded-3xl md:rounded-[3rem] text-white shadow-2xl shadow-gray-900/20 lg:sticky lg:top-28">
             <h3 className="text-xl font-bold mb-6 flex items-center">
               <ShieldCheck className="h-5 w-5 mr-3 text-blue-500" /> Publish Changes
             </h3>

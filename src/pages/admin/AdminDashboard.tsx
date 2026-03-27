@@ -80,12 +80,12 @@ export const AdminDashboard: React.FC = () => {
       <Helmet>
         <title>Admin Dashboard | AutoCare Pro</title>
       </Helmet>
-      <div className="flex justify-between items-end">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
-          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Dashboard Overview</h1>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Dashboard Overview</h1>
           <p className="text-gray-500 mt-2">Welcome back to your AutoCare Pro management panel.</p>
         </div>
-        <div className="bg-white px-6 py-3 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-3">
+        <div className="bg-white px-6 py-3 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-3 w-full md:w-auto justify-center md:justify-start">
           <Clock className="h-5 w-5 text-blue-600" />
           <span className="font-bold text-gray-900">{new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
         </div>

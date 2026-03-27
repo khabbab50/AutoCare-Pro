@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../firebase';
+import { auth, db, handleFirestoreError, OperationType } from '../firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { Helmet } from 'react-helmet-async';
 
@@ -155,11 +155,11 @@ export const Login: React.FC = () => {
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4 sm:px-0">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white py-10 px-6 shadow-2xl rounded-[3rem] border border-gray-100 sm:px-12"
+          className="bg-white py-8 md:py-10 px-6 md:px-12 shadow-2xl rounded-3xl md:rounded-[3rem] border border-gray-100"
         >
           {error && (
             <div className="mb-6 p-4 bg-red-50 rounded-2xl flex items-start space-x-3 text-red-700 border border-red-100">

@@ -9,12 +9,17 @@ import {
   Settings, 
   LogOut,
   Home,
-  Users
+  Users,
+  X
 } from 'lucide-react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 
-export const AdminSidebar: React.FC = () => {
+interface AdminSidebarProps {
+  onClose?: () => void;
+}
+
+export const AdminSidebar: React.FC<AdminSidebarProps> = ({ onClose }) => {
   const location = useLocation();
 
   const handleLogout = async () => {
@@ -33,18 +38,27 @@ export const AdminSidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="w-64 bg-gray-900 text-white min-h-screen flex flex-col sticky top-0">
-      <div className="p-6 border-b border-gray-800">
+    <aside className="w-64 bg-gray-900 text-white h-full flex flex-col shadow-2xl">
+      <div className="p-6 border-b border-gray-800 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
           <span className="text-xl font-bold tracking-tight">Admin<span className="text-blue-500">Panel</span></span>
         </Link>
+        {onClose && (
+          <button 
+            onClick={onClose}
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-800 text-gray-400"
+          >
+            <X className="h-6 w-6" />
+          </button>
+        )}
       </div>
 
-      <nav className="flex-grow p-4 space-y-2">
+      <nav className="flex-grow p-4 space-y-2 overflow-y-auto">
         {menuItems.map((item) => (
           <Link
             key={item.path}
             to={item.path}
+            onClick={onClose}
             className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
               location.pathname === item.path 
                 ? 'bg-blue-600 text-white' 
